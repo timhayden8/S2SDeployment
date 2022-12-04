@@ -1,1 +1,1 @@
-vnetname,Resourcegroup,publicipname,location,remoteIP,localsubnets,gatewaysubnetsize
+vnetname,Resourcegroup,publicipname,location,remoteIP,localsubnets,gatewaysubnetsize,connectionname
