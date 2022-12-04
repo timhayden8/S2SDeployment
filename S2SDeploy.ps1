@@ -19,7 +19,7 @@ $GatewayIPConfig = new-azvirtualnetworkgatewayipconfig -name $vngcsv.publicipnam
 $VirtualNetworkGateway=New-AzVirtualNetworkGateway -Name ($vnet.name+='VNG') -ResourceGroupName $vngcsv.resourcegroup -Location $vngcsv.location -IpConfigurations $gatewayipconfig -GatewayType Vpn -VpnType RouteBased -GatewaySku VpnGw1
 
 #Creates Local Network Gateway
-$localnetworkgateway = New-AzLocalNetworkGateway -Name $vngcsv.localnetworkgateway -ResourceGroupName $vngcsv.resourcegroup -Location $vngcsv.location -GatewayIpAddress $vngcsv.remoteIP -AddressPrefix @($vngcsv.localsubnets)
+$localnetworkgateway = New-AzLocalNetworkGateway -Name ($vnet.name+='LNG')-ResourceGroupName $vngcsv.resourcegroup -Location $vngcsv.location -GatewayIpAddress $vngcsv.remoteIP -AddressPrefix @($vngcsv.localsubnets)
 
 #Creates connection with autonegotiation
 new-azvirtualnetworkgatewayconnection -name $vngcsv.connectionname -resourcegroupname $vngcsv.resourcegroup -location $vngcsv.location -virtualnetworkgateway $virtualnetworkgateway -localnetworkgateway $localnetworkgateway -connectiontype IPsec -sharedkey $vngcsv.sharedsecretkey
